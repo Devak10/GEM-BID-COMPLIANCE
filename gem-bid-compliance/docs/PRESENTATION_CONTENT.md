@@ -144,7 +144,7 @@
   - Model file (`models/compliance_model.pkl`) and dataset (`data/bid_compliance_dataset.csv`) verified intact and unaltered.
   - Zero autonomous approval or rejection commands in code or documentation.
 - **Presenter Notes:**  
-  *"On our synthetic test set, Random Forest achieved 91.00% accuracy and an F1-score of 0.9211. Crucially, all 43 automated tests pass, confirming system reliability."*
+  *"On our synthetic test set, Random Forest achieved 91.00% accuracy and an F1-score of 0.9211. Crucially, all 51 automated tests pass, confirming system reliability."*
 
 ---
 
@@ -153,7 +153,7 @@
 - **Slide Title:** Future Enhancements & Conclusion
 - **Roadmap for Operationalization:**
   - **OCR Integration:** Optical Character Recognition for scanned physical certificates and notarized affidavits.
-  - **Official Gateway Connectors:** Secure, authenticated connectors to live GeM portal APIs, MCA21, and GSTN gateways.
+  - **Official Gateway Connectors:** Secure, authenticated connectors to public procurement portal gateways, MCA21, and GSTN gateways.
   - **Advanced NLP:** Transformer-based document models (e.g., LayoutLM) for deep semantic comprehension of commercial contracts.
   - **Role-Based Access Control (RBAC):** Multi-tier authorization across scrutiny clerks, senior procurement managers, and vigilance officers.
 - **Conclusion:**  

@@ -376,7 +376,7 @@ Follow this 5-minute structured sequence for evaluation:
 - **Synthetic Mock Dataset:** Built upon a synthetic 1,000-sample dataset; does not reflect real-world CPCL or GeM vendor transaction records.
 - **Prototype Rule Engine:** Statutory thresholds (e.g., local content percentages, verification turnaround days) are configured as prototype approximations.
 - **Heuristic Text Extraction:** Keyword identification and fuzzy name matching are heuristic implementations and do not include optical character recognition (OCR) for scanned images.
-- **No Direct Government API Integration:** Operates standalone without live GeM API or government database connections.
+- **No Direct Government Portal Integration:** Operates standalone without external portal connectors or live government database connections.
 - **Academic Demonstration Scope:** Designed specifically for hackathon evaluation; not certified for live production deployment.
 - **Human Authority:** The system provides decision support only; final procurement qualification decisions remain the sole statutory prerogative of authorized procurement officers.
 
@@ -396,7 +396,7 @@ Follow this 5-minute structured sequence for evaluation:
 
 The following extensions are identified for future real-world operationalization:
 - **Optical Character Recognition (OCR):** Integration of Tesseract or Cloud Vision OCR to process scanned certificates, signed affidavits, and image-based PDFs.
-- **Authorized Procurement API Bridges:** Secure, authenticated connectors to live GeM portal APIs, MCA21, and GSTN verification gateways.
+- **Authorized Procurement System Bridges:** Secure, authenticated connectors to procurement portal interfaces, MCA21, and GSTN verification gateways.
 - **Deep Domain NLP:** Transformer-based document parsing models (e.g., LayoutLM) for semantic extraction of complex financial statements and legal clauses.
 - **Automated Model Monitoring:** Drift detection pipelines monitoring procurement trend shifts and feature distribution variations.
 - **Role-Based Access Control (RBAC):** Multi-tier permission management for Junior Officers, Senior Procurement Managers, and Vigilance Committee members.

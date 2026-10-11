@@ -266,9 +266,9 @@ The platform has been comprehensively verified:
 
 ## 19. Limitations
 
-1. **Synthetic Procurement Data:** Evaluated exclusively on synthetic mock records; does not reflect live GeM or CPCL transactions.
+1. **Synthetic Procurement Data:** Evaluated exclusively on synthetic mock records; does not reflect real-world portal or CPCL transactions.
 2. **Heuristic Document Analysis:** Keyword matching and sequence comparison are heuristic prototypes and do not replace certified forensic document examination.
-3. **No External Government API Integration:** Operates offline and standalone without active connections to GSTN, MCA21, or GeM internal databases.
+3. **No External Government API Integration:** Operates offline and standalone without active connections to GSTN, MCA21, or public portal internal databases.
 4. **Advisory Scope:** AI outputs represent decision support only; final procurement qualification decisions remain the sole responsibility of human officers.
 
 ---
@@ -276,7 +276,7 @@ The platform has been comprehensively verified:
 ## 20. Future Enhancements
 
 1. **Optical Character Recognition (OCR):** Ingest scanned physical certificates and image-based PDFs.
-2. **Authorized API Gateways:** Connect to official GSTN and GeM APIs for live automated validation.
+2. **Authorized API Gateways:** Connect to official GSTN and procurement portal interfaces for automated validation.
 3. **Transformer-Based Semantic Extraction:** Apply domain-specific NLP models to interpret complex technical specifications and tender clauses.
 4. **Role-Based Access Control (RBAC):** Provide granular authentication across scrutiny officers, approving authorities, and vigilance committees.
 
