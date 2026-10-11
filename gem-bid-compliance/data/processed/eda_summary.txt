@@ -1,0 +1,304 @@
+======================================================================
+EXPLORATORY DATA ANALYSIS: GeM BID COMPLIANCE PLATFORM
+AIML Hackathon Problem Statement ID: 26100
+======================================================================
+
+[1] BASIC DATASET INFORMATION
+----------------------------------------
+Dataset Shape       : (1000, 34)
+Total Records (Rows): 1000
+Total Columns       : 34
+Memory Usage        : 1422.16 KB
+
+Column Names and Data Types:
+ - bid_id                        : str
+ - tender_id                     : str
+ - bidder_id                     : str
+ - company_name                  : str
+ - project_type                  : str
+ - state                         : str
+ - district                      : str
+ - bid_value_lakhs               : float64
+ - gst_registration              : str
+ - gst_return_filing             : str
+ - pan_verification              : str
+ - udyam_registration            : str
+ - income_tax_compliance         : str
+ - startup_india_status          : str
+ - nsic_status                   : str
+ - epfo_compliance               : str
+ - esic_compliance               : str
+ - oem_authorization             : str
+ - make_in_india_compliance      : str
+ - local_content_percentage      : float64
+ - digilocker_verification       : str
+ - blacklist_status              : str
+ - debarment_status              : str
+ - required_documents            : int64
+ - submitted_documents           : int64
+ - document_completeness         : float64
+ - documentation_consistency     : float64
+ - tender_eligibility            : str
+ - previous_compliance_issues    : int64
+ - portal_verification_issues    : int64
+ - verification_delay_days       : int64
+ - compliance_score              : float64
+ - risk_level                    : str
+ - actual_compliance             : int64
+
+[2] DATA QUALITY & INTEGRITY CHECKS
+----------------------------------------
+Total Missing Values: 0
+Zero missing values across all columns. Data integrity is intact.
+Duplicate Full Rows : 0
+Duplicate Bid IDs   : 0
+Unique Bidders      : 332 (distinct vendors participating)
+Unique Tenders      : 179 (distinct tenders issued)
+
+Domain Integrity Assertions:
+ - compliance_score in [0, 100]        : PASSED
+ - local_content_percentage in [0, 100]: PASSED
+ - document_completeness in [0, 100]   : PASSED
+ - documentation_consistency in [0, 100]: PASSED
+ - submitted_docs <= required_docs     : PASSED
+ - actual_compliance in {0, 1}        : PASSED
+ - risk_level in {Low, Medium, High}   : PASSED
+
+[3] DESCRIPTIVE STATISTICS (NUMERICAL FEATURES)
+----------------------------------------
+                             count       mean         std    min     25%     50%      75%      max
+bid_value_lakhs             1000.0  121.44097  171.099591   5.00  32.575  66.910  137.885  2500.00
+local_content_percentage    1000.0   60.58376   21.601477   0.00  46.770  63.025   76.400   100.00
+required_documents          1000.0   10.10400    2.896130   6.00   8.000  10.000   12.000    15.00
+submitted_documents         1000.0    9.25000    3.107597   2.00   7.000   9.000   11.000    15.00
+document_completeness       1000.0   90.77421   12.210175  33.33  85.710  93.330  100.000   100.00
+documentation_consistency   1000.0   59.53113   20.351484  20.00  43.420  58.540   76.325   100.00
+previous_compliance_issues  1000.0    0.98200    1.267787   0.00   0.000   1.000    2.000     5.00
+portal_verification_issues  1000.0    0.83900    1.126209   0.00   0.000   0.000    1.000     4.00
+verification_delay_days     1000.0   11.44400    8.337648   0.00   4.000   9.000   18.000    30.00
+compliance_score            1000.0   61.03395   26.810765   0.00  42.315  71.010   82.510    94.69
+
+[4] TARGET VARIABLE ANALYSIS (actual_compliance)
+----------------------------------------
+Class 0 (Non-Compliant / Requires Review): 439 records (43.90%)
+Class 1 (Compliant)                     : 561 records (56.10%)
+Saved: data\processed\target_distribution.png
+
+[5] RISK LEVEL ANALYSIS
+----------------------------------------
+Low       : 205 records (20.50%)
+Medium    : 402 records (40.20%)
+High      : 393 records (39.30%)
+Saved: data\processed\risk_distribution.png
+
+[6] CATEGORICAL FEATURE VALUE COUNTS & COMPLIANCE RATES
+----------------------------------------
+
+--- project_type ---
+                     Count  Compliance Rate (%)
+project_type                                   
+Construction            76                50.00
+Consultancy            104                60.58
+Electrical             102                56.86
+Equipment Supply        90                54.44
+Facility Management    103                54.37
+IT Services            113                55.75
+Infrastructure          93                61.29
+Maintenance            101                57.43
+Mechanical             102                53.92
+Transportation         116                55.17
+
+--- state ---
+                Count  Compliance Rate (%)
+state                                     
+Andhra Pradesh     85                63.53
+Delhi              81                67.90
+Gujarat            85                55.29
+Karnataka          85                62.35
+Kerala             74                59.46
+Maharashtra        82                53.66
+Odisha             89                62.92
+Rajasthan          90                45.56
+Tamil Nadu         72                45.83
+Telangana          80                51.25
+Uttar Pradesh      75                62.67
+West Bengal       102                45.10
+
+--- gst_registration ---
+                  Count  Compliance Rate (%)
+gst_registration                            
+Not Verified        187                 2.67
+Verified            813                68.39
+
+--- gst_return_filing ---
+                   Count  Compliance Rate (%)
+gst_return_filing                            
+Filed                737                67.71
+Not Filed            109                 8.26
+Pending              154                34.42
+
+--- pan_verification ---
+                  Count  Compliance Rate (%)
+pan_verification                            
+Not Verified         91                 1.10
+Verified            909                61.61
+
+--- udyam_registration ---
+                    Count  Compliance Rate (%)
+udyam_registration                            
+Not Applicable        258                55.04
+Not Verified          209                21.53
+Verified              533                70.17
+
+--- income_tax_compliance ---
+                       Count  Compliance Rate (%)
+income_tax_compliance                            
+Compliant                782                63.30
+Non-Compliant             92                23.91
+Pending                  126                34.92
+
+--- startup_india_status ---
+                      Count  Compliance Rate (%)
+startup_india_status                            
+Not Applicable          831                52.59
+Not Verified             33                69.70
+Verified                136                74.26
+
+--- nsic_status ---
+                Count  Compliance Rate (%)
+nsic_status                               
+Not Applicable    872                54.24
+Not Verified       12                75.00
+Verified          116                68.10
+
+--- epfo_compliance ---
+                 Count  Compliance Rate (%)
+epfo_compliance                            
+Compliant          600                74.67
+Non-Compliant      331                20.54
+Not Applicable      69                65.22
+
+--- esic_compliance ---
+                 Count  Compliance Rate (%)
+esic_compliance                            
+Compliant          588                74.66
+Non-Compliant      343                22.45
+Not Applicable      69                65.22
+
+--- oem_authorization ---
+                   Count  Compliance Rate (%)
+oem_authorization                            
+Invalid              150                 6.67
+Not Applicable       593                56.66
+Valid                257                83.66
+
+--- make_in_india_compliance ---
+                          Count  Compliance Rate (%)
+make_in_india_compliance                            
+Compliant                   812                62.44
+Non-Compliant               188                28.72
+
+--- digilocker_verification ---
+                         Count  Compliance Rate (%)
+digilocker_verification                            
+Not Applicable              91                60.44
+Not Verified               195                58.97
+Verified                   714                54.76
+
+--- blacklist_status ---
+                  Count  Compliance Rate (%)
+blacklist_status                            
+Blacklisted          43                 0.00
+Clear               957                58.62
+
+--- debarment_status ---
+                  Count  Compliance Rate (%)
+debarment_status                            
+Debarred             50                 0.00
+Not Debarred        950                59.05
+
+--- tender_eligibility ---
+                    Count  Compliance Rate (%)
+tender_eligibility                            
+Eligible              437                91.76
+Not Eligible          268                 3.36
+Requires Review       295                51.19
+
+Saved: data\processed\categorical_features.png
+
+[7] NUMERICAL FEATURE DISTRIBUTIONS
+----------------------------------------
+Saved: data\processed\numerical_distributions.png
+
+[8] FEATURE RELATIONSHIPS VS actual_compliance
+----------------------------------------
+
+compliance_score by actual_compliance:
+                    mean  median    std
+actual_compliance                      
+0                  37.46   38.65  22.64
+1                  79.48   81.42  10.24
+
+document_completeness by actual_compliance:
+                    mean  median    std
+actual_compliance                      
+0                  84.09   86.67  13.77
+1                  96.00  100.00   7.43
+
+documentation_consistency by actual_compliance:
+                    mean  median    std
+actual_compliance                      
+0                  45.77   42.93  16.52
+1                  70.30   70.40  16.14
+
+previous_compliance_issues by actual_compliance:
+                   mean  median   std
+actual_compliance                    
+0                  1.72     1.0  1.45
+1                  0.40     0.0  0.68
+
+portal_verification_issues by actual_compliance:
+                   mean  median   std
+actual_compliance                    
+0                  1.44     1.0  1.24
+1                  0.37     0.0  0.75
+
+verification_delay_days by actual_compliance:
+                    mean  median   std
+actual_compliance                     
+0                  17.55    18.0  7.71
+1                   6.67     5.0  5.04
+Saved: data\processed\features_vs_target.png
+
+[9] CORRELATION ANALYSIS (NUMERICAL FEATURES)
+----------------------------------------
+Correlation with actual_compliance (ranked by magnitude):
+ - compliance_score              : +0.7782
+ - documentation_consistency     : +0.5986
+ - document_completeness         : +0.4843
+ - local_content_percentage      : +0.4122
+ - submitted_documents           : +0.1906
+ - required_documents            : +0.0193
+ - bid_value_lakhs               : -0.0336
+ - portal_verification_issues    : -0.4702
+ - previous_compliance_issues    : -0.5183
+ - verification_delay_days       : -0.6480
+Saved: data\processed\correlation_heatmap.png
+
+[10] OUTLIER DETECTION (IQR METHOD)
+----------------------------------------
+Identified potential outliers without modifying synthetic baseline:
+ - bid_value_lakhs             :  86 outliers (Bounds: [-125.39, 295.85])
+ - local_content_percentage    :   9 outliers (Bounds: [2.33, 120.84])
+ - required_documents          :   0 outliers (Bounds: [2.00, 18.00])
+ - submitted_documents         :   0 outliers (Bounds: [1.00, 17.00])
+ - document_completeness       :  45 outliers (Bounds: [64.27, 121.44])
+ - documentation_consistency   :   0 outliers (Bounds: [-5.94, 125.68])
+ - previous_compliance_issues  :   0 outliers (Bounds: [-3.00, 5.00])
+ - portal_verification_issues  : 118 outliers (Bounds: [-1.50, 2.50])
+ - verification_delay_days     :   0 outliers (Bounds: [-17.00, 39.00])
+ - compliance_score            :   0 outliers (Bounds: [-17.98, 142.80])
+
+[11] PLOTLY INTERACTIVE REPORT GENERATION
+----------------------------------------
+Saved interactive Plotly visual: data\processed\interactive_eda_dashboard.html

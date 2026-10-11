@@ -1,0 +1,45 @@
+AI-POWERED GeM BID COMPLIANCE PLATFORM - MODEL INPUT FEATURES
+=================================================================
+
+Selected Champion Model: Random Forest
+Target Column: actual_compliance (0 = Non-Compliant / Review, 1 = Compliant)
+
+1. Raw Numerical Features (10):
+   - bid_value_lakhs
+   - local_content_percentage
+   - required_documents
+   - submitted_documents
+   - document_completeness
+   - documentation_consistency
+   - previous_compliance_issues
+   - portal_verification_issues
+   - verification_delay_days
+   - compliance_score
+
+2. Raw Categorical Features (18):
+   - project_type
+   - state
+   - district
+   - gst_registration
+   - gst_return_filing
+   - pan_verification
+   - udyam_registration
+   - income_tax_compliance
+   - startup_india_status
+   - nsic_status
+   - epfo_compliance
+   - esic_compliance
+   - oem_authorization
+   - make_in_india_compliance
+   - digilocker_verification
+   - blacklist_status
+   - debarment_status
+   - tender_eligibility
+
+3. Excluded Columns (6):
+   - bid_id
+   - tender_id
+   - bidder_id
+   - company_name
+   - risk_level
+   - actual_compliance

@@ -1,0 +1,77 @@
+======================================================================
+PREDICTION AND RISK ASSESSMENT SYSTEM SUMMARY
+AIML Hackathon Problem Statement ID: 26100 | CPCL - Smart Automation
+======================================================================
+
+1. SYSTEM PURPOSE & ROLE
+----------------------------------------
+The Prediction and Risk Assessment System serves as an intelligent decision-support
+assistant for GeM Procurement Officers during tender compliance evaluation. It analyzes
+bidder statutory documents, scores compliance, identifies discrepancies, classifies risk,
+and presents transparent explanations.
+
+2. CORE MODEL SPECIFICATION
+----------------------------------------
+- Serialized Artifact  : models/compliance_model.pkl
+- Model Architecture   : Random Forest Classifier within ColumnTransformer Pipeline
+- Transformed Features : 132 features (StandardScaler + OneHotEncoder)
+- Test Accuracy        : 91.00%
+- Test F1 Score        : 0.9211
+- Outputs              : Binary compliance classification (0 or 1) and calibrated probability estimates.
+
+3. PREDICTION & PROBABILITY FIELDS
+----------------------------------------
+- predicted_compliance       : 1 = Compliant, 0 = Non-Compliant / Requires Review
+- compliance_probability     : Model confidence for compliance (0.00 to 1.00)
+- non_compliance_probability : Model confidence for non-compliance (0.00 to 1.00)
+- compliance_percentage      : Formatted display string (e.g., 92.4%)
+
+4. PROTOTYPE RISK CLASSIFICATION RULES
+----------------------------------------
+- LOW RISK:
+  • Compliance probability >= 0.80
+  • Zero statutory exclusions (Not Blacklisted, Not Debarred, Eligible)
+  • Satisfactory mandatory registrations (GST, PAN, Tax, Labor)
+- MEDIUM RISK:
+  • Compliance probability between 0.50 and 0.79
+  • OR documentation gaps (Completeness < 85% or Consistency < 70%)
+  • OR elevated verification delay (> 10 days) or pending GST return filings
+- HIGH RISK:
+  • Compliance probability < 0.50
+  • OR Blacklisted / Debarred statutory status
+  • OR Tender eligibility marked as 'Not Eligible'
+  • OR Failed fundamental identity verifications (GST / PAN Not Verified)
+  • OR Composite compliance score < 50.0
+
+5. RULE-BASED VERIFICATION ENGINE
+----------------------------------------
+Evaluates 21 statutory and technical parameters into:
+- passed_checks   : Compliant statutory criteria met.
+- warning_checks  : Minor ambiguities, pending filings, or moderate delays.
+- failed_checks   : Statutory defaults, blacklisting, debarment, or missing mandates.
+
+6. SAMPLE TEST EVALUATIONS
+----------------------------------------
+Case 1: BID0001 (Bharat Data Systems Enterprises)
+- Predicted: Compliant (Probability: 99.7%)
+- Risk Level: Low Risk
+- Status: Standard Verification Complete
+
+Case 2: BID0073 (Blacklisted Vendor Record)
+- Predicted: Non-Compliant (Probability: < 5%)
+- Risk Level: High Risk
+- Status: REQUIRES PROCUREMENT OFFICER REVIEW (Blacklist Exclusion Triggered)
+
+Case 3: BID0014 (Not-Eligible Tender Bid)
+- Predicted: Non-Compliant
+- Risk Level: High Risk
+- Status: REQUIRES PROCUREMENT OFFICER REVIEW (Eligibility Criteria Default)
+
+7. MANDATORY DISCLAIMER & HUMAN-IN-THE-LOOP MANDATE
+----------------------------------------
+"This is a prototype decision-support system trained on synthetic/demo data.
+It does not make official procurement qualification or disqualification decisions."
+
+All algorithmic outputs, risk tiers, and compliance scores are assistive guidance.
+The definitive legal and procurement authority for bid qualification or disqualification
+strictly remains with the GeM Procurement Officer.

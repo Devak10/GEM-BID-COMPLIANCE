@@ -1,0 +1,50 @@
+==================================================
+CLASSIFICATION REPORT: Logistic Regression
+==================================================
+                  precision    recall  f1-score   support
+
+0: Non-Compliant       0.91      0.88      0.89        88
+    1: Compliant       0.90      0.93      0.92       112
+
+        accuracy                           0.91       200
+       macro avg       0.91      0.90      0.90       200
+    weighted avg       0.91      0.91      0.90       200
+
+Confusion Matrix (Actual Rows x Predicted Cols):
+[[ 77  11]
+ [  8 104]]
+
+
+==================================================
+CLASSIFICATION REPORT: Decision Tree
+==================================================
+                  precision    recall  f1-score   support
+
+0: Non-Compliant       0.87      0.83      0.85        88
+    1: Compliant       0.87      0.90      0.89       112
+
+        accuracy                           0.87       200
+       macro avg       0.87      0.87      0.87       200
+    weighted avg       0.87      0.87      0.87       200
+
+Confusion Matrix (Actual Rows x Predicted Cols):
+[[ 73  15]
+ [ 11 101]]
+
+
+==================================================
+CLASSIFICATION REPORT: Random Forest
+==================================================
+                  precision    recall  f1-score   support
+
+0: Non-Compliant       0.92      0.88      0.90        88
+    1: Compliant       0.91      0.94      0.92       112
+
+        accuracy                           0.91       200
+       macro avg       0.91      0.91      0.91       200
+    weighted avg       0.91      0.91      0.91       200
+
+Confusion Matrix (Actual Rows x Predicted Cols):
+[[ 77  11]
+ [  7 105]]
+

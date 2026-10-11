@@ -1,0 +1,88 @@
+======================================================================
+MACHINE LEARNING MODEL SUMMARY: GeM BID COMPLIANCE PLATFORM
+AIML Hackathon Problem Statement ID: 26100 | Smart Automation
+======================================================================
+
+1. DATASET & PROBLEM OVERVIEW
+----------------------------------------
+- Total Dataset Size: 1000 records x 34 columns
+- Target Variable   : actual_compliance (Binary: 0 = Non-Compliant / Requires Review, 1 = Compliant)
+- Target Distribution:
+  * Class 0 (Non-Compliant / Review): 439 (43.90%)
+  * Class 1 (Compliant)            : 561 (56.10%)
+
+2. FEATURE SELECTION & PREPROCESSING
+----------------------------------------
+- Excluded Features (6):
+  * Identifiers: bid_id, tender_id, bidder_id, company_name
+  * Target Leakage Prevention: risk_level (derived risk label)
+- Input Features (28):
+  * Numerical (10): ['bid_value_lakhs', 'local_content_percentage', 'required_documents', 'submitted_documents', 'document_completeness', 'documentation_consistency', 'previous_compliance_issues', 'portal_verification_issues', 'verification_delay_days', 'compliance_score']
+  * Categorical (18): ['project_type', 'state', 'district', 'gst_registration', 'gst_return_filing', 'pan_verification', 'udyam_registration', 'income_tax_compliance', 'startup_india_status', 'nsic_status', 'epfo_compliance', 'esic_compliance', 'oem_authorization', 'make_in_india_compliance', 'digilocker_verification', 'blacklist_status', 'debarment_status', 'tender_eligibility']
+- Preprocessing Pipeline:
+  * Numerical  : StandardScaler()
+  * Categorical: OneHotEncoder(handle_unknown='ignore', sparse_output=False)
+- Total Transformed Features after Encoding: 132
+
+3. TRAIN / TEST SPLIT
+----------------------------------------
+- Split Ratio : 80% Training (800 samples), 20% Testing (200 samples)
+- Stratification: Enabled on actual_compliance
+- Random State: 42
+
+4. CANDIDATE MODELS & EVALUATION METRICS
+----------------------------------------
+              Model  Accuracy  Precision  Recall  F1 Score
+Logistic Regression     0.905     0.9043  0.9286    0.9163
+      Decision Tree     0.870     0.8707  0.9018    0.8860
+      Random Forest     0.910     0.9052  0.9375    0.9211
+
+5. SELECTED PROTOTYPE MODEL & RATIONALE
+----------------------------------------
+- Selected Champion Model: Random Forest
+- Metrics on Test Set:
+  * Accuracy : 91.00%
+  * Precision: 90.52%
+  * Recall   : 93.75%
+  * F1 Score : 92.11%
+- Rationale:
+  The Random Forest provides superior balance between high precision (minimizing false disqualification of compliant vendors) and high recall (detecting non-compliant submissions), outperforming the baseline models on composite F1 score.
+
+6. TOP 10 INFLUENTIAL FEATURES
+----------------------------------------
+                             Feature  Importance
+               num__compliance_score    0.178549
+        num__verification_delay_days    0.101724
+    cat__tender_eligibility_Eligible    0.077160
+      num__documentation_consistency    0.072735
+cat__tender_eligibility_Not Eligible    0.071124
+          num__document_completeness    0.036478
+     num__portal_verification_issues    0.032952
+  cat__gst_registration_Not Verified    0.032131
+      cat__gst_registration_Verified    0.026124
+       num__local_content_percentage    0.025871
+(Note: Feature importance indicates mathematical association in the synthetic data, not causal proof.)
+
+7. SAVED ARTIFACTS
+----------------------------------------
+- Trained Model Pipeline: models/compliance_model.pkl
+- Model Feature Spec    : models/model_features.txt
+- Model Comparison CSV  : data/processed/model_comparison.csv
+- Classification Reports: data/processed/classification_reports.txt
+- Feature Importance CSV: data/processed/feature_importance.csv
+- Feature Importance PNG: data/processed/feature_importance.png
+- Confusion Matrices    :
+  * data/processed/confusion_matrix_logistic_regression.png
+  * data/processed/confusion_matrix_decision_tree.png
+  * data/processed/confusion_matrix_random_forest.png
+
+8. PROTOTYPE DISCLAIMER & LIMITATIONS
+----------------------------------------
+"This model is trained on synthetic/demo data and is intended only as a prototype for the Hackathon solution. It must not be treated as an official government or GeM compliance decision system."
+
+Actual production deployment requires:
+- Validated real-world procurement datasets.
+- Official API integrations with authoritative portals (MCA-21, GSTN, Udyam, DigiLocker, CPPP).
+- Rule-based hard statutory guardrails (e.g. mandatory disqualification for blacklisted vendors).
+- Strict cybersecurity and privacy compliance.
+- Final decision authority strictly reserved for the Procurement Officer.
